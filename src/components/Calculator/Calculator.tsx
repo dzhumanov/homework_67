@@ -1,6 +1,5 @@
 import { RootState } from "../../app/store";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
 import {
   one,
   two,
