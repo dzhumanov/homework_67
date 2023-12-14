@@ -1,7 +1,11 @@
+import Door from "./components/Door/Door";
+
 function App() {
   return (
     <>
-      <div></div>
+      <div>
+        <Door/>
+      </div>
     </>
   );
 }
