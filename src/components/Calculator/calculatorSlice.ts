@@ -1,23 +1,17 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-interface codeState {
-  value: string;
-  styleValue: string;
-  buttonValue: boolean;
-  text: string;
-  checked: boolean;
+interface calculatorState {
+    value: string;
+    result: string | null;
 }
 
-const initialState: codeState = {
-  value: "",
-  styleValue: "",
-  buttonValue: false,
-  text: "",
-  checked: false,
+const initialState: calculatorState = {
+    value: '',
+    result: null,
 };
 
-export const doorSlice = createSlice({
-  name: "door",
+export const calculatorSlice = createSlice({
+  name: "calculator",
   initialState,
   reducers: {
     one: (state) => {
@@ -50,27 +44,31 @@ export const doorSlice = createSlice({
     zero: (state) => {
       state.value += "0";
     },
-    text: (state, action: PayloadAction<string>) => {
-      state.text = action.payload;
+    plus: (state) => {
+      state.value += "+";
     },
-    changeColor: (state, action: PayloadAction<string>) => {
-      state.styleValue = action.payload;
+    minus: (state) => {
+      state.value += "-";
     },
-    disableButtons: (state, action: PayloadAction<boolean>) => {
-      state.buttonValue = action.payload;
+    multiplication: (state) => {
+      state.value += "*";
+    },
+    division: (state) => {
+      state.value += "/";
     },
     slice: (state) => {
       if (state.value.length > 0) {
         state.value = state.value.slice(0, -1);
       }
     },
-    check: (state) => {
-      state.checked = true;
-    },
+    onResult: (state) => {
+        state.result = eval(state.value);
+        state.value = '';
+    }
   },
 });
 
-export const doorReducer = doorSlice.reducer;
+export const calculatorReducer = calculatorSlice.reducer;
 
 export const {
   one,
@@ -83,9 +81,10 @@ export const {
   eight,
   nine,
   zero,
-  text,
-  changeColor,
-  disableButtons,
   slice,
-  check,
-} = doorSlice.actions;
+  plus,
+  minus,
+  multiplication,
+  division,
+  onResult,
+} = calculatorSlice.actions;

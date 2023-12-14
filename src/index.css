@@ -11,3 +11,7 @@
   width: 250px;
   padding: 0 20px;
 }
+
+.calculator .display {
+  height: 100px;
+}
